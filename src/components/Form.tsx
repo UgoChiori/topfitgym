@@ -11,7 +11,7 @@ const Form: React.FC<FormProps> = ({ onSubmit, children, className = "" }) => {
     <form
       onSubmit={onSubmit}
       className={`bg-white p-6 rounded-lg shadow-md ${className}`}
-      noValidate
+      // noValidate
     >
       {children}
     </form>

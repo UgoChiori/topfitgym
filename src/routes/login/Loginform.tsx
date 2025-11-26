@@ -1,20 +1,53 @@
-import React from "react";
+import React, {useState} from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Label from "../../components/Label";
 import Form from "../../components/Form";
 import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify";
+import { auth, googleProvider } from "../../auth/Firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+
 
 const Login: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+ e.preventDefault();
     if (!e.currentTarget.checkValidity()) return;
-    console.log("Login clicked!");
 
-    navigate("/dashboard-home");
+    const form = e.currentTarget;
+    const email = (form.elements.namedItem("username") as HTMLInputElement).value;
+    const password = (form.elements.namedItem("password") as HTMLInputElement).value;
+
+    try {
+      setLoading(true);
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success("Login successful!");
+
+      setTimeout(() => navigate("/dashboard-home"), 1500);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      setLoading(true);
+      await signInWithPopup(auth, googleProvider);
+      toast.success("Logged in with Google!");
+
+      setTimeout(() => navigate("/dashboard-home"), 1500);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
  return (
@@ -30,6 +63,7 @@ const Login: React.FC = () => {
           </Label>
           <Input
             type="text"
+             name="username"
             required
             placeholder="Username"
             className="w-full"
@@ -42,6 +76,7 @@ const Login: React.FC = () => {
           </Label>
           <Input
             type="password"
+             name="password" 
             required
             placeholder="***************"
             className="w-full"
@@ -52,10 +87,19 @@ const Login: React.FC = () => {
           text="Login"
           htmlType="submit"
           onClick={() => {}}
-          loading={false}
+          loading={loading}
           disabled={false}
           width="100%"
         />
+          <Button
+            text="Login with Google"
+            htmlType="button"
+            onClick={handleGoogleLogin}
+            loading={false}
+            disabled={false}
+            width="100%"
+            className="mt-3 text-white"
+          />
       </Form>
 
       {/* Bottom Links */}
