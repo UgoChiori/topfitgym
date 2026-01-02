@@ -1,24 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Label from "../components/Label";
 import { Menu, X } from "lucide-react";
+import { AuthContext } from "../context/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../auth/Firebase";
+import { toast } from "react-toastify";
 
 // Responsive Navigation Component using your custom Button + Label components
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
+  const { user, userData, loading } = useContext(AuthContext);
 
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
+  if (loading) return null;
 
-  // if (!e.currentTarget.checkValidity()) return;
-  // console.log("Login clicked!");
+  const getGreeting = () => {
+    const hour = new Date().getHours();
 
-  // navigate("/dashboard");
-  // }
-
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+    return "Good evening";
+  };
+const handleSignOut = async () => {
+  try {
+    await signOut(auth);
+    navigate("/login");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  }catch (error:any) {
+      console.error("Error signing out:", error.message);
+    toast.error("Sign-out error:", error.message)
+  }
+};
   return (
     <>
       <nav className="w-full flex items-center justify-between px-6 py-4 shadow-md bg-white sticky top-0 z-50">
@@ -43,13 +58,47 @@ const Navigation: React.FC = () => {
             <Label>Membership</Label>
           </Link>
 
-          <Link to="/contact" className="text-green-800 hover:underline">
+          <Link to="/contact-us" className="text-green-800 hover:underline">
             <Label>Contact</Label>
           </Link>
         </div>
+      
+        <div className="hidden md:flex items-center gap-4">
+          {!user && (
+            <Button
+              text="Login"
+              onClick={() => navigate("/login")}
+              loading={false}
+              disabled={false}
+              htmlType="button"
+            />
+          )}
 
-        {/* Auth Button */}
-        <div className="hidden md:flex">
+          {user && (
+            <div className="flex items-center gap-4">
+              <span className="text-green-800 font-medium">
+                {getGreeting()}, {userData?.firstName}
+              </span>
+              <Link to="/member-profile">
+                <img
+                  src={userData?.photoURL || "/images/default-avatar.png"}
+                  alt="profile"
+                  className="w-10 h-10 rounded-full object-cover border"
+                />
+              </Link>
+
+              <Button
+                text="Sign Out"
+                onClick={handleSignOut}
+                loading={false}
+                disabled={false}
+                htmlType="button"
+              />
+            </div>
+          )}
+        </div>
+
+        {/* <div className="hidden md:flex">
           <Button
             text="Login"
             onClick={() => navigate("/login")}
@@ -57,7 +106,7 @@ const Navigation: React.FC = () => {
             disabled={false}
             htmlType="button"
           />
-        </div>
+        </div> */}
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
@@ -71,11 +120,57 @@ const Navigation: React.FC = () => {
           </Button>
         </div>
       </nav>
-      {/* mobile menu dropdown */}
+      {/* --- MOBILE MENU --- */}
       {isOpen && (
-        <div className="lg:hidden bg-green-200 shaadow-inner">
+        <div className="lg:hidden bg-green-200 shadow-inner">
           <ul className="flex flex-col items-start space-y-3 px-6 py-4">
-            <Link to="/classes">Classes</Link>
+            <Link to="/" onClick={() => setIsOpen(false)}>
+              Home
+            </Link>
+            <Link to="/classes" onClick={() => setIsOpen(false)}>
+              Classes
+            </Link>
+            <Link to="/membership" onClick={() => setIsOpen(false)}>
+              Membership
+            </Link>
+            <Link to="/contact" onClick={() => setIsOpen(false)}>
+              Contact
+            </Link>
+
+            {!user && (
+              <Button
+                text="Login"
+                onClick={() => {
+                  navigate("/login");
+                  setIsOpen(false);
+                }}
+                loading={false}
+                disabled={false}
+                htmlType="button"
+              />
+            )}
+
+            {user && (
+              <div className="flex flex-col gap-3">
+                <span className="text-green-800 font-medium">
+                  {getGreeting()}, {userData?.firstName}
+                </span>
+
+                <img
+                  src={userData?.photoURL || "/images/default-avatar.png"}
+                  alt="profile"
+                  className="w-12 h-12 rounded-full object-cover border"
+                />
+
+                <Button
+                  text="Sign Out"
+                  onClick={() => signOut(auth)}
+                  loading={false}
+                  disabled={false}
+                  htmlType="button"
+                />
+              </div>
+            )}
           </ul>
         </div>
       )}
@@ -85,112 +180,3 @@ const Navigation: React.FC = () => {
 
 export default Navigation;
 
-// import React, { useState } from "react";
-// import { NavLink } from "react-router-dom";
-// import Label from "../Label";
-// import Button from "../Button";
-// import { AnimatePresence, motion } from "framer-motion";
-// import { Menu, X } from "lucide-react";
-
-// // NOTE: Auth logic placeholder — uncomment when auth is ready
-// // const isAuthenticated = false;
-// // const user = { name: "Ugo" };
-
-// const Navigation: React.FC = () => {
-//   const [open, setOpen] = useState(false);
-
-//   const navItems = [
-//     { label: "Home", to: "/" },
-//     { label: "Classes", to: "/classes" },
-//     { label: "Trainers", to: "/trainers" },
-//     { label: "Membership", to: "/membership" },
-//   ];
-
-//   return (
-//     <nav className="w-full bg-white dark:bg-gray-900 shadow-sm fixed top-0 left-0 z-50">
-//       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-//         {/* Logo */}
-//         <Label className="text-xl font-bold text-gray-900 dark:text-white">TopFitGym</Label>
-
-//         {/* Desktop Nav */}
-//         <div className="hidden md:flex space-x-8 items-center">
-//           {navItems.map((item) => (
-//             <NavLink
-//               key={item.to}
-//               to={item.to}
-//               className={({ isActive }) =>
-//                 `text-sm font-medium transition duration-200 ${
-//                   isActive
-//                     ? "text-blue-600 dark:text-blue-400"
-//                     : "text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-//                 }`
-//               }
-//             >
-//               {item.label}
-//             </NavLink>
-//           ))}
-
-//           {/* Auth Buttons */}
-//           {/* {isAuthenticated ? (
-//             <Label className="text-sm text-gray-700 dark:text-gray-300">Hi, {user.name}</Label>
-//           ) : (
-//             <>
-//               <Button variant="ghost" to="/login">Login</Button>
-//               <Button variant="primary" to="/register">Sign Up</Button>
-//             </>
-//           )} */}
-//         </div>
-
-//         {/* Mobile Menu Button */}
-//         <button
-//           className="md:hidden text-gray-700 dark:text-gray-300"
-//           onClick={() => setOpen(!open)}
-//         >
-//           {open ? <X size={26} /> : <Menu size={26} />}
-//         </button>
-//       </div>
-
-//       {/* Mobile Drawer */}
-//       <AnimatePresence>
-//         {open && (
-//           <motion.div
-//             initial={{ opacity: 0, y: -10 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             exit={{ opacity: 0, y: -10 }}
-//             transition={{ duration: 0.2 }}
-//             className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg"
-//           >
-//             <div className="flex flex-col space-y-4 p-4">
-//               {navItems.map((item) => (
-//                 <NavLink
-//                   key={item.to}
-//                   to={item.to}
-//                   onClick={() => setOpen(false)}
-//                   className={({ isActive }) =>
-//                     `text-base font-medium transition duration-200 ${
-//                       isActive
-//                         ? "text-blue-600 dark:text-blue-400"
-//                         : "text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-//                     }`
-//                   }
-//                 >
-//                   {item.label}
-//                 </NavLink>
-//               ))}
-
-//               {/* Auth Buttons (commented until auth is ready) */}
-//               {/* {!isAuthenticated && (
-//                 <div className="flex flex-col space-y-2">
-//                   <Button to="/login" variant="ghost">Login</Button>
-//                   <Button to="/register" variant="primary">Sign Up</Button>
-//                 </div>
-//               )} */}
-//             </div>
-//           </motion.div>
-//         )}
-//       </AnimatePresence>
-//     </nav>
-//   );
-// };
-
-// export default Navigation;

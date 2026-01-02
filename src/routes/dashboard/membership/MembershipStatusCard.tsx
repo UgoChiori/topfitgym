@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-
-
-const MembershipStatusCard: React.FC = () => {
+const MembershipForm: React.FC = () => {
   return (
-    <div>Membership StatusCard</div>
-  )
-}
+    <div className="min-h-screen flex items-center justify-center px-4 bg-gray-100">
+      Membership Form
+    </div>
+  );
+};
 
-export default MembershipStatusCard
+export default MembershipForm;
