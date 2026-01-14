@@ -52,7 +52,7 @@ const Locations: React.FC = () => {
             key={i}
             className="flex flex-col items-center text-center"
           >
-            {/* Circular map */}
+         
             <div className="w-40 h-40 rounded-full overflow-hidden border shadow-sm mb-6">
               <iframe
                 title={loc.name}
@@ -65,15 +65,14 @@ const Locations: React.FC = () => {
               />
             </div>
 
-            {/* Label */}
+     
             <div className="bg-green-700 text-white px-6 py-2 rounded-full font-bold tracking-wide mb-4">
               {loc.name.toUpperCase()}
             </div>
 
-            {/* Address */}
+         
             <p className="text-sm text-gray-600">{loc.address}</p>
 
-            {/* CTA */}
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}`}
               target="_blank"

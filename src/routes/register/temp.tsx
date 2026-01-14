@@ -88,7 +88,7 @@ const RegisterForm = () => {
   initialValues={initialValues}
   validationSchema={validationSchema}
   onSubmit={async (values: FormValues, { setSubmitting }) => {
-    console.log("Formik submit called"); // ✅ See if submit fires
+    console.log("Formik submit called"); 
     console.log("Form values:", values);
 
     try {

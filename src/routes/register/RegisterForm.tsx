@@ -579,7 +579,7 @@ setShowVerifyModal(true);
                 )}
               </div>
 
-              {/* Password Fields */}
+              {/* The Password Field */}
               <PasswordField
                 label="New Password"
                 name="password"
@@ -600,7 +600,7 @@ setShowVerifyModal(true);
                 handleChange={handleChange}
               />
 
-              {/* Terms */}
+              {/* Terms and coditons*/}
               <div className="flex gap-2 items-start">
                 <Input
                   type="checkbox"
@@ -643,7 +643,7 @@ setShowVerifyModal(true);
 export default RegisterForm;
 
 /* -------------------------
-   REUSABLE SMALL COMPONENTS
+  HERE, REUSABLE SMALL COMPONENTS 
 ---------------------------*/
 
 interface FieldProps {

@@ -2,18 +2,25 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Label from "../components/Label";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { AuthContext } from "../context/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../auth/Firebase";
 import { toast } from "react-toastify";
+import { useCart } from "../context/CartContext";
 
-// Responsive Navigation Component using your custom Button + Label components
-const Navigation: React.FC = () => {
+interface Props {
+  onOpenCart: () => void;
+  searchQuery?: string;
+  setSearchQuery?: (val: string) => void;
+}
+
+const Navigation: React.FC<Props> = ({ onOpenCart }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigate = useNavigate();
   const { user, userData, loading } = useContext(AuthContext);
+  const { cartCount } = useCart();
 
   if (loading) return null;
 
@@ -24,27 +31,25 @@ const Navigation: React.FC = () => {
     if (hour < 18) return "Good afternoon";
     return "Good evening";
   };
-const handleSignOut = async () => {
-  try {
-    await signOut(auth);
-    navigate("/login");
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  }catch (error:any) {
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       console.error("Error signing out:", error.message);
-    toast.error("Sign-out error:", error.message)
-  }
-};
+      toast.error("Sign-out error:", error.message);
+    }
+  };
   return (
     <>
       <nav className="w-full flex items-center justify-between px-6 py-4 shadow-md bg-white sticky top-0 z-50">
-        {/* Logo */}
         <div className="flex items-center gap-2">
           <Label htmlFor="logo">
             <img src="/images/logo.png" alt="logo" className="w-8" />
           </Label>
         </div>
 
-        {/* Links */}
         <div className="hidden md:flex items-center gap-6">
           <Link to="/" className="text-green-800 hover:underline">
             <Label>Home</Label>
@@ -54,15 +59,29 @@ const handleSignOut = async () => {
             <Label>Classes</Label>
           </Link>
 
-          <Link to="/membership" className="text-green-800 hover:underline">
+          <Link to="/planlist" className="text-green-800 hover:underline">
             <Label>Membership</Label>
           </Link>
 
           <Link to="/contact-us" className="text-green-800 hover:underline">
             <Label>Contact</Label>
           </Link>
+          <Link to="/products" className="text-green-800 hover:underline">
+            <Label>Products</Label>
+          </Link>
+          <button
+            onClick={onOpenCart}
+            className="relative p-2 text-green-800 hover:bg-green-50 rounded-full transition cursor-pointer"
+          >
+            <ShoppingCart size={22} />
+            {cartCount > 0 && (
+              <span className="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
+                {cartCount}
+              </span>
+            )}
+          </button>
         </div>
-      
+
         <div className="hidden md:flex items-center gap-4">
           {!user && (
             <Button
@@ -98,17 +117,6 @@ const handleSignOut = async () => {
           )}
         </div>
 
-        {/* <div className="hidden md:flex">
-          <Button
-            text="Login"
-            onClick={() => navigate("/login")}
-            loading={false}
-            disabled={false}
-            htmlType="button"
-          />
-        </div> */}
-
-        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <Button
             type="ghost"
@@ -120,7 +128,7 @@ const handleSignOut = async () => {
           </Button>
         </div>
       </nav>
-      {/* --- MOBILE MENU --- */}
+
       {isOpen && (
         <div className="lg:hidden bg-green-200 shadow-inner">
           <ul className="flex flex-col items-start space-y-3 px-6 py-4">
@@ -179,4 +187,3 @@ const handleSignOut = async () => {
 };
 
 export default Navigation;
-
