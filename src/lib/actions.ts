@@ -2,10 +2,10 @@ export async function resendVerificationLink(email: string | undefined) {
   console.log("Resend verification link called with email:", email);
 
   try {
-    // Dummy delay to mimic an async request
+    // this is a dummy delay to mimic an async request
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    // Dummy success log
+    // the dummy success log
     console.log("Dummy: Verification link 'sent' successfully.");
 
     return {

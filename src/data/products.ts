@@ -1,4 +1,4 @@
-import { Product } from "../components/ProductCard"
+import { Product } from "../components/ProductCard";
 
 export const products: Product[] = [
   {
@@ -9,7 +9,7 @@ export const products: Product[] = [
     discountPrice: 65990,
     inStock: true,
     category: "Supplements",
-    image: "/images/wheyprotein.png"
+    image: "/images/wheyprotein.png",
   },
   {
     id: "2",
@@ -19,7 +19,7 @@ export const products: Product[] = [
     discountPrice: 11500,
     inStock: true,
     category: "Accessories",
-    image: "/images/resistanceband.png"
+    image: "/images/resistanceband.png",
   },
   {
     id: "3",
@@ -29,7 +29,7 @@ export const products: Product[] = [
     discountPrice: 29000,
     inStock: false,
     category: "Apparel",
-    image: "/images/gymhoodie.png"
+    image: "/images/gymhoodie.png",
   },
   {
     id: "4",
@@ -39,7 +39,7 @@ export const products: Product[] = [
     discountPrice: 37000,
     inStock: true,
     category: "Supplements",
-    image: "/images/creatinemono.png"
+    image: "/images/creatinemono.png",
   },
   {
     id: "5",
@@ -49,7 +49,7 @@ export const products: Product[] = [
     discountPrice: 143000,
     inStock: true,
     category: "Accessories",
-    image: "/images/adjustabledumbbells.png"
+    image: "/images/adjustabledumbbells.png",
   },
   {
     id: "6",
@@ -59,7 +59,7 @@ export const products: Product[] = [
     discountPrice: 14000,
     inStock: true,
     category: "Accessories",
-    image: "/images/yogamat.png"
+    image: "/images/yogamat.png",
   },
   {
     id: "7",
@@ -69,7 +69,7 @@ export const products: Product[] = [
     discountPrice: 21000,
     inStock: true,
     category: "Supplements",
-    image: "/images/preworkout.png"
+    image: "/images/preworkout.png",
   },
   {
     id: "8",
@@ -79,7 +79,7 @@ export const products: Product[] = [
     discountPrice: 7000,
     inStock: false,
     category: "Accessories",
-    image: "/images/liftingstraps.png"
+    image: "/images/liftingstraps.png",
   },
   {
     id: "9",
@@ -89,7 +89,7 @@ export const products: Product[] = [
     discountPrice: 4000,
     inStock: true,
     category: "Accessories",
-    image: "/images/shakerbottles.png"
+    image: "/images/shakerbottles.png",
   },
   {
     id: "10",
@@ -99,10 +99,9 @@ export const products: Product[] = [
     discountPrice: 42000,
     inStock: true,
     category: "Recovery",
-    image: "/images/foamroller.png"
+    image: "/images/foamroller.png",
   },
 
- 
   {
     id: "11",
     name: "Gym T-Shirt",
@@ -111,7 +110,7 @@ export const products: Product[] = [
     discountPrice: 16500,
     inStock: true,
     category: "Apparel",
-    image: "/images/gymshirt.png"
+    image: "/images/gymshirt.png",
   },
   {
     id: "12",
@@ -121,7 +120,7 @@ export const products: Product[] = [
     discountPrice: 24500,
     inStock: true,
     category: "Apparel",
-    image: "/images/compressionleggings.png"
+    image: "/images/compressionleggings.png",
   },
   {
     id: "13",
@@ -131,6 +130,7 @@ export const products: Product[] = [
     discountPrice: 30000,
     inStock: true,
     category: "Accessories",
+    image: "/images/weightlift.png",
   },
   {
     id: "14",
@@ -140,6 +140,7 @@ export const products: Product[] = [
     discountPrice: 15000,
     inStock: true,
     category: "Supplements",
+    image: "/images/bcaarecovery.png",
   },
   {
     id: "15",
@@ -149,6 +150,7 @@ export const products: Product[] = [
     discountPrice: 8000,
     inStock: true,
     category: "Accessories",
+    image: "/images/jumprope.png",
   },
   {
     id: "16",
@@ -158,6 +160,7 @@ export const products: Product[] = [
     discountPrice: 36000,
     inStock: true,
     category: "Accessories",
+    image: "/images/backpack.png",
   },
   {
     id: "17",
@@ -167,15 +170,17 @@ export const products: Product[] = [
     discountPrice: 6500,
     inStock: true,
     category: "Recovery",
+    image: "/images/balls.png",
   },
   {
     id: "18",
     name: "Home Workout Bundle",
     description: "Bands, mat, and jump rope starter kit",
-    price: 42000,
-    discountPrice: 39500,
+    price: 250000,
+    discountPrice: 245000,
     inStock: true,
     category: "Bundles",
+    image: "/images/homeworkout.png",
   },
   {
     id: "19",
@@ -185,6 +190,7 @@ export const products: Product[] = [
     discountPrice: 13000,
     inStock: false,
     category: "Supplements",
+    image: "/images/proteinbar.png",
   },
   {
     id: "20",
@@ -194,96 +200,117 @@ export const products: Product[] = [
     discountPrice: 18000,
     inStock: true,
     category: "Recovery",
+    image: "/images/recoverypack.png"
   },
   {
-  id: "21",
-  name: "Training Gloves",
-  description: "Padded gym gloves for grip and hand protection",
-  price: 11000,
-  discountPrice: 9500,
-  inStock: true,
-  category: "Accessories",
-},
-{
-  id: "22",
-  name: "Boxing Gloves",
-  description: "Durable gloves designed for bag work and sparring",
-  price: 45000,
-  discountPrice: 42000,
-  inStock: true,
-  category: "Accessories",
-},
-{
-  id: "23",
-  name: "Phone Arm Band",
-  description: "Sweat-resistant phone holder for workouts and runs",
-  price: 8500,
-  discountPrice: 7000,
-  inStock: true,
-  category: "Accessories",
-},
-{
-  id: "24",
-  name: "Training Head Bands",
-  description: "Moisture-wicking head bands for intense sessions",
-  price: 6000,
-  discountPrice: 5000,
-  inStock: true,
-  category: "Accessories",
-},
-{
-  id: "25",
-  name: "Wrist Wraps",
-  description: "Extra support for heavy lifts and wrist stability",
-  price: 9000,
-  discountPrice: 8000,
-  inStock: true,
-  category: "Accessories",
-},
-{
-  id: "26",
-  name: "Knee Support Sleeves",
-  description: "Compression sleeves for joint support and recovery",
-  price: 20000,
-  discountPrice: 18500,
-  inStock: true,
-  category: "Accessories",
-},
-{
-  id: "27",
-  name: "Sweat Towel",
-  description: "Quick-dry microfiber towel for gym sessions",
-  price: 4500,
-  discountPrice: 3800,
-  inStock: true,
-  category: "Accessories",
-},
-{
-  id: "28",
-  name: "Speed Skipping Rope",
-  description: "Lightweight rope for cardio and conditioning",
-  price: 10000,
-  discountPrice: 9000,
-  inStock: false,
-  category: "Accessories",
-},
-{
-  id: "29",
-  name: "Gym Headphones",
-  description: "Wireless headphones built for workouts",
-  price: 65000,
-  discountPrice: 62000,
-  inStock: true,
-  category: "Accessories",
-},
-{
-  id: "30",
-  name: "Waist Trainer Belt",
-  description: "Adjustable belt for core support during training",
-  price: 27000,
-  discountPrice: 25000,
-  inStock: true,
-  category: "Accessories",
-},
-
-]
+    id: "21",
+    name: "Training Gloves",
+    description: "Padded gym gloves for grip and hand protection",
+    price: 11000,
+    discountPrice: 9500,
+    inStock: true,
+    category: "Accessories",
+    image: "/images/traininggloves.png"
+  },
+  {
+    id: "22",
+    name: "Boxing Gloves",
+    description: "Durable gloves designed for bag work and sparring",
+    price: 45000,
+    discountPrice: 42000,
+    inStock: true,
+    category: "Accessories",
+    image: "images/boxinggloves.png"
+  },
+  {
+    id: "23",
+    name: "Phone Arm Band",
+    description: "Sweat-resistant phone holder for workouts and runs",
+    price: 8500,
+    discountPrice: 7000,
+    inStock: true,
+    category: "Accessories",
+    image: "images/runningarmband.webp"
+  },
+  {
+    id: "24",
+    name: "Training Head Bands",
+    description: "Moisture-wicking head bands for intense sessions",
+    price: 6000,
+    discountPrice: 5000,
+    inStock: true,
+    category: "Accessories",
+    image: "images/headband.png"
+  },
+  {
+    id: "25",
+    name: "Wrist Wraps",
+    description: "Extra support for heavy lifts and wrist stability",
+    price: 9000,
+    discountPrice: 8000,
+    inStock: true,
+    category: "Accessories",
+    image: "images/armband.png"
+  },
+  {
+    id: "26",
+    name: "Knee Support Sleeves",
+    description: "Compression sleeves for joint support and recovery",
+    price: 20000,
+    discountPrice: 18500,
+    inStock: true,
+    category: "Accessories",
+    image: "images/kneesupport.png"
+  },
+  {
+    id: "27",
+    name: "Sweat Towel",
+    description: "Quick-dry microfiber towel for gym sessions",
+    price: 4500,
+    discountPrice: 3800,
+    inStock: true,
+    category: "Accessories",
+    image: "images/sweattowel.png"
+  },
+  {
+    id: "28",
+    name: "Speed Skipping Rope",
+    description: "Lightweight rope for cardio and conditioning",
+    price: 10000,
+    discountPrice: 9000,
+    inStock: false,
+    category: "Accessories",
+    image: "images/speedskippingrope.png"
+  },
+  {
+    id: "29",
+    name: "Gym Headphones",
+    description: "Wireless headphones built for workouts",
+    price: 65000,
+    discountPrice: 62000,
+    inStock: true,
+    category: "Accessories",
+    image: "images/gymheadphones.png"
+  },
+  {
+    id: "30",
+    name: "Waist Trainer Belt",
+    description: "Adjustable belt for core support during training",
+    price: 27000,
+    discountPrice: 25000,
+    inStock: true,
+    category: "Accessories",
+    image: "images/waisttrainer.png"
+  },
+  {
+    id: "31",
+    name: "Hanging Punching Bag Set for Adults ",
+    description:
+      "Punching Bag for Adults, 4Ft Heavy Boxing Bag Set with 12Oz Boxing Gloves",
+    price: 100000,
+    discountPrice: 95000,
+    inStock: true,
+    category: "Accessories",
+    image: "/images/punchingbagset.webp"
+  },
+];

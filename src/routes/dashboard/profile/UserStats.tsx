@@ -7,7 +7,7 @@ import Input from '../../../components/Input';
 
 
 
-const ProfileSettings: React.FC = () => {
+const UserStats: React.FC = () => {
 const [ loading, setLoading ] = useState(false);
 const [profile, setProfile] = useState({
   firstName:"",
@@ -115,4 +115,4 @@ const handleUpdate = async (e: React.FormEvent) => {
   )
 }
 
-export default ProfileSettings
+export default UserStats;

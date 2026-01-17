@@ -10,8 +10,7 @@ import Login from "./routes/login/Loginform";
 import RegisterForm from "./routes/register/RegisterForm";
 import DashboardHome from "./routes/dashboard/dashboard/DashboardHome";
 import StatsOverview from "./routes/dashboard/dashboard/StatsOverview";
-// import MembershipStatusCard from "./routes/dashboard/membership/MembershipStatusCard";
-import ProfileCard from "./routes/dashboard/profile/ProfileCard";
+import UserStats from "./routes/dashboard/profile/UserStats";
 import EditProfileForm from "./routes/dashboard/profile/EditProfileForm";
 import ForgotPassword from "./routes/login/ForgotPassword";
 import PasswordReset from "./routes/login/PasswordReset";
@@ -23,6 +22,7 @@ import NotFound from "./routes/NotFound";
 import MembershipForm from "./routes/dashboard/membership/MembershipPlanForm";
 import PlanList from "./routes/dashboard/membership/PlanList";
 import Classes from "./home/Classes";
+import UserProfile from "./routes/dashboard/profile/UserProfile";
 
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -50,7 +50,9 @@ const App: React.FC = () => {
           <Route path="/classes" element={<Classes />} />
           <Route path="/membership" element={<MembershipForm />} />
           <Route path="/planlist" element={<PlanList />} />
-          <Route path="/member-profile" element={<ProfileCard />} />
+          <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="editprofile" element={<EditProfileForm />} /> 
+          <Route path="userstatistics" element={<UserStats />} />
           <Route path="/edit-profile" element={<EditProfileForm />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/password-reset" element={<PasswordReset />} />

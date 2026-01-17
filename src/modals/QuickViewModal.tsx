@@ -28,7 +28,8 @@ const QuickViewModal: React.FC<Props> = ({ product, onClose, onAddToCart }) => {
 
       
         <div className="md:w-1/2 h-64 md:h-auto bg-gray-100 flex items-center justify-center">
-           <span className="text-gray-400">Product Image</span>
+           {/* <span className="text-gray-400">Product I\mage</span> */}
+           <img src={product.image} alt="images" />
         </div>
 
      
