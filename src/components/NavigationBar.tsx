@@ -142,10 +142,10 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
               Membership
             </Link>
             <Link to="/contact-us" onClick={() => setIsOpen(false)}>
-            Products
+            Contact
             </Link>
  <Link to="/products" onClick={() => setIsOpen(false)}>
-              Contact
+           Products
             </Link>
             {!user && (
               <Button
