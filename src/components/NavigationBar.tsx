@@ -98,7 +98,7 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
               <span className="text-green-800 font-medium">
                 {getGreeting()}, {userData?.firstName}
               </span>
-              <Link to="/member-profile">
+              <Link to="/userprofile">
                 <img
                   src={userData?.photoURL || "/images/default-avatar.png"}
                   alt="profile"

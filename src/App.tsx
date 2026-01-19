@@ -24,6 +24,7 @@ import PlanList from "./routes/dashboard/membership/PlanList";
 import Classes from "./home/Classes";
 import UserProfile from "./routes/dashboard/profile/UserProfile";
 
+
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -53,7 +54,7 @@ const App: React.FC = () => {
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="editprofile" element={<EditProfileForm />} /> 
           <Route path="userstatistics" element={<UserStats />} />
-          <Route path="/edit-profile" element={<EditProfileForm />} />
+          {/* <Route path="/edit-profile" element={<EditProfileForm />} /> */}
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/password-reset" element={<PasswordReset />} />
           <Route path="/contact-us" element={<Contact />} />

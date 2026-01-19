@@ -4,6 +4,8 @@ import { doc, getDoc, updateDoc} from "firebase/firestore";
 import { toast } from "react-toastify";
 import Button from "../../../components/Button";
 import Input from '../../../components/Input';
+import { useNavigate } from 'react-router-dom';
+import { uploadService } from '../../../services/uploadService';
 
 
 
@@ -13,7 +15,10 @@ const [profile, setProfile] = useState({
   firstName:"",
   weight: "",
   height:"",
-})
+  beforeImage: "",
+  afterImage: "",
+});
+const navigate = useNavigate();
 
 useEffect(() => {
   const fetchProfile = async () => {
@@ -25,6 +30,8 @@ useEffect(() => {
           firstName: data.firstName || "",
           weight: data.weight || "",
           height: data.height || "",
+          beforeImage: data.beforeImage || "",
+          afterImage: data.afterImage || "",
 
         })
       }
@@ -42,6 +49,24 @@ if (w >  0 && h > 0 ) {
 return null;
 }
 
+const handleProgressUpload = async ( file: File, type: 'beforeImage' | 'afterImage') => {
+  if (!auth.currentUser) return;
+  try {
+    setLoading(true);
+    const path = `progress/${auth.currentUser.uid}/${type}`;
+    const url = await uploadService(file,path);
+
+    setProfile(prev => ({ ...prev, [type]:url }));
+    await updateDoc(doc(db, "users", auth.currentUser.uid), {[type]:url });
+    toast.success(`${type === 'beforeImage' ? 'Before' : 'After'} Photo Updated!`);
+  } catch (err) {
+    console.error(err);
+    toast.error("Upload Failed")
+  } finally {
+    setLoading(false);
+  }
+}
+
 const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!auth.currentUser) return;
@@ -54,12 +79,15 @@ const handleUpdate = async (e: React.FormEvent) => {
         height: profile.height,
         bmi: calculateBMI(),
       });
-      toast.success("Profile updated successfully!");
-      // I will come back to this abeg
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
+      toast.success("Profile updated successfully! Redirecting");
+      setTimeout(() => {
+        navigate("/userprofile");
+      }, 1500);
+     } catch (err) {
+      const error = err as Error;
       console.error("Update Error:", err)
-      toast.error(err.message || "Failed to update profile.");
+      
+      toast.error(error.message || "Failed to update profile.");
     } finally {
       setLoading(false);
     }
@@ -108,7 +136,38 @@ const handleUpdate = async (e: React.FormEvent) => {
             </div>
           </div>
         )}
+<div className="pt-6 border-t border-gray-100">
+          <h3 className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-widest">Progress Photos</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* Before Slot */}
+            <div className="space-y-2">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">Before Photo</p>
+              <label className="relative h-64 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center cursor-pointer overflow-hidden group hover:border-green-500 transition-all">
+                {profile.beforeImage ? (
+                  <img src={profile.beforeImage} className="w-full h-full object-cover" alt="Before" />
+                ) : (
+                  <span className="text-gray-400 text-xs">Click to upload Before photo</span>
+                )}
+                <input type="file" className="hidden" accept="image/*" onChange={(e) => e.target.files && handleProgressUpload(e.target.files[0], 'beforeImage')} />
+              </label>
+            </div>
 
+            {/* After Slot */}
+            <div className="space-y-2">
+              <p className="text-[10px] font-bold text-gray-400 uppercase">After Photo</p>
+              <label className="relative h-64 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200 flex flex-col items-center justify-center cursor-pointer overflow-hidden group hover:border-green-500 transition-all">
+                {profile.afterImage ? (
+                  <img src={profile.afterImage} className="w-full h-full object-cover" alt="After" />
+                ) : (
+                  <span className="text-gray-400 text-xs">Click to upload After photo</span>
+                )}
+                <input type="file" className="hidden" accept="image/*" onChange={(e) => e.target.files && handleProgressUpload(e.target.files[0], 'afterImage')} />
+              </label>
+            </div>
+
+          </div>
+        </div>
         <Button text="Save Changes" loading={loading} width="100%" />
       </form>
     </div>
@@ -116,3 +175,4 @@ const handleUpdate = async (e: React.FormEvent) => {
 }
 
 export default UserStats;
+
