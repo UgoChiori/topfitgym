@@ -142,10 +142,10 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
               Membership
             </Link>
             <Link to="/contact-us" onClick={() => setIsOpen(false)}>
-            Contact
+              Contact
             </Link>
- <Link to="/products" onClick={() => setIsOpen(false)}>
-           Products
+            <Link to="/products" onClick={() => setIsOpen(false)}>
+              Products
             </Link>
             {!user && (
               <Button
@@ -165,13 +165,13 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
                 <span className="text-green-800 font-medium">
                   {getGreeting()}, {userData?.firstName}
                 </span>
-
-                <img
-                  src={userData?.photoURL || "/images/default-avatar.png"}
-                  alt="profile"
-                  className="w-12 h-12 rounded-full object-cover border"
-                />
-
+                <Link to="/userprofile">
+                  <img
+                    src={userData?.photoURL || "/images/default-avatar.png"}
+                    alt="profile"
+                    className="w-12 h-12 rounded-full object-cover border"
+                  />
+                </Link>
                 <Button
                   text="Sign Out"
                   onClick={() => signOut(auth)}
