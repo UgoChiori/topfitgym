@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { plans } from "./plans";
 import OrderSummary from "./OrderSummary";
+import { useGymStore } from "../../../store/useGymStore";
 
 interface Plan {
   id: string;
@@ -11,23 +12,18 @@ interface Plan {
 }
 
 const MembershipPlanForm: React.FC = () => {
+  const { formData, setPlan } = useGymStore();
   const [isYearly, setIsYearly] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
+  // const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
 
 
-if(selectedPlan) {
-  return (
-    <OrderSummary
-    plan={selectedPlan}
-    isYearly={isYearly}
-    onBack={() => setSelectedPlan(null)}
-    />
-  )
+
+if (formData.selectedPlan) {
+  return <OrderSummary />; 
 }
 
-
   return (
-    // Plans
+  
    <div className="py-20 px-6 max-w-7xl mx-auto bg-white text-gray-900">
     <div className="flex flex-col items-center mb-12">
         <h1 className="text-4xl font-bold mb-6">Choose Your Plan</h1>
@@ -50,13 +46,18 @@ if(selectedPlan) {
         </div>
       </div>
    <div className="grid md:grid-cols-3 gap-8">
-    {plans.map((plan) => (
+    {plans.map((plan: Plan) => (
       <div key={plan.id} className="...">
-      
-        <button onClick={() => setSelectedPlan(plan)}
+      <button 
+  onClick={() => setPlan(plan, isYearly)} // Use setPlan from your store
+  className="capitalize cursor-pointer border-b-2"
+>
+  Get Started with {plan.name}
+</button>
+        {/* <button onClick={() => setSelectedPlan(plan)}
         className="capitalize cursor-pointer border-b-2">
           Get Started with {plan.name}
-        </button>
+        </button> */}
       </div>
   
       

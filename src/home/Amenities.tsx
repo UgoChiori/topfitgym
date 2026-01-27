@@ -36,7 +36,7 @@ const Amenities: React.FC = () => {
   </h2>
 
   <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-    {/* Left list */}
+   
     <div className="flex flex-col space-y-5 sm:space-y-6 text-base sm:text-lg">
       {amenities.map((item, i) => (
         <button
@@ -54,9 +54,9 @@ const Amenities: React.FC = () => {
       ))}
     </div>
 
-    {/* Right description */}
+
     <div className="relative md:pl-10">
-      {/* Vertical line — desktop only */}
+     
       <div className="hidden md:block absolute left-0 top-0 h-full border-l-2 border-dotted border-green-800"></div>
 
       <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-800">

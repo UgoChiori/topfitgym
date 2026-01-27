@@ -21,7 +21,7 @@ const HeroSection: React.FC = () => {
   return (
 
         <div className="relative w-full h-[450px] sm:h-[550px] md:h-[650px] overflow-hidden">
-  {/* Slider */}
+ 
   <div className="overflow-hidden w-full h-full relative">
     <div className="flex animate-slideLeft">
       {[...images, ...images].map((img, i) => (
@@ -35,7 +35,7 @@ const HeroSection: React.FC = () => {
     </div>
   </div>
 <div className="absolute inset-0 bg-black/40 flex flex-col justify-between px-4 py-6 opacity-70">
-  {/* Centered h1 */}
+ 
   <div className="flex flex-col items-center justify-center flex-1">
     <h1 className="text-white text-3xl text-center sm:text-5xl font-bold tracking-wider">
       CROSSFIT | HIIT | 24/7 OPEN GYM <br />

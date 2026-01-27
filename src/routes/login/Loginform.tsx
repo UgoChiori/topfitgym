@@ -43,9 +43,10 @@ const Login: React.FC = () => {
 
       const docSnap = await getDoc(doc(db, "users", user.uid));
       const firstName = docSnap.exists() ? docSnap.data().firstName : "";
-
+    
       toast.success(`${getGreeting()}, ${firstName || "Member"}!`);
-      setTimeout(() => navigate("/dashboard-home"), 1000);
+      console.log(firstName, "firstName")
+      setTimeout(() => navigate("/userprofile"), 1000);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       toast.error(err.message || "Failed to login");
@@ -64,7 +65,7 @@ const Login: React.FC = () => {
       const firstName = docSnap.exists() ? docSnap.data().firstName : "";
 
       toast.success(`${getGreeting()}, ${firstName || "User"}!`);
-      setTimeout(() => navigate("/dashboard-home"), 1000);
+      setTimeout(() => navigate("/userprofile"), 1000);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       if (err.code === "auth/popup-closed-by-user") {

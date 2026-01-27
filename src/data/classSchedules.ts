@@ -1,4 +1,4 @@
-// ClassSchedule.tsx
+
 
 type ScheduleItem = {
   id: string;

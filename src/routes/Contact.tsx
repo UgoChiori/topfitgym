@@ -183,7 +183,6 @@ const Contact: React.FC = () => {
         </Form>
       </div>
 
-      {/* <ScrollRestoration /> */}
     </div>
   );
 };

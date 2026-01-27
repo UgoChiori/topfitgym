@@ -33,7 +33,7 @@ const UserProfile: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-3xl mx-auto">
-        {/* Profile Header Card */}
+   
         <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="h-32 bg-green-800 w-full"></div>
           
@@ -64,7 +64,7 @@ const UserProfile: React.FC = () => {
               <p className="text-gray-500 font-medium">{auth.currentUser?.email}</p>
             </div>
 
-            {/* Stats Grid */}
+          
             <div className="grid grid-cols-3 gap-4 border-t border-b border-gray-100 py-6 mb-8">
               <div className="text-center">
                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Weight</p>
@@ -80,7 +80,6 @@ const UserProfile: React.FC = () => {
               </div>
             </div>
 
-            {/* Quick Links Section */}
             <div className="space-y-4">
               <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Fitness Deep Dive</h3>
               <div 

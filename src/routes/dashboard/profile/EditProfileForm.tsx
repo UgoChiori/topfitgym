@@ -12,7 +12,7 @@ const EditProfileForm: React.FC = () => {
   const [fetching, setFetching] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Form State
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -21,7 +21,7 @@ const EditProfileForm: React.FC = () => {
     photoURL: ""
   });
 
-  // 1. Load current data
+
   useEffect(() => {
     const loadData = async () => {
       if (auth.currentUser) {
@@ -41,7 +41,7 @@ const EditProfileForm: React.FC = () => {
     loadData();
   }, []);
 
-  // 2. Handle Image Selection & Upload
+
   const handleImageClick = () => fileInputRef.current?.click();
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +55,7 @@ const EditProfileForm: React.FC = () => {
       
       setFormData((prev) => ({ ...prev, photoURL: url }));
       
-      // Update Firestore immediately for the photo
+     
       await updateDoc(doc(db, "users", auth.currentUser.uid), { photoURL: url });
       toast.success("Photo updated!");
     } catch (err) {
@@ -66,7 +66,7 @@ const EditProfileForm: React.FC = () => {
     }
   };
 
-  // 3. Handle Form Submit (Text data)
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!auth.currentUser) return;
@@ -95,7 +95,7 @@ const EditProfileForm: React.FC = () => {
       <h2 className="text-2xl font-black text-gray-900 mb-8">EDIT INFORMATION</h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Profile Picture Section */}
+   
         <div className="flex flex-col items-center mb-8">
           <div 
             onClick={handleImageClick}
@@ -119,7 +119,7 @@ const EditProfileForm: React.FC = () => {
           />
         </div>
 
-        {/* Text Fields */}
+   
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <Label htmlFor="firstName">First Name</Label>

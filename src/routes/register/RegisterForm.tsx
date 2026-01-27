@@ -363,7 +363,7 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Formik,
   Form as FormikForm,
@@ -404,7 +404,7 @@ const RegisterForm = () => {
   const [showVerifyModal, setShowVerifyModal] = useState(false);
 const [registeredEmail, setRegisteredEmail] = useState<string | undefined>("");
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const auth = getAuth();
 
   const validationSchema = Yup.object().shape({
@@ -496,10 +496,10 @@ const [registeredEmail, setRegisteredEmail] = useState<string | undefined>("");
       setRegisteredEmail(values.email);
 setShowVerifyModal(true);
  console.log("Navigating to /login");
-      // setTimeout(() => {
-      //   console.log("Navigating to /login");
-      //   navigate("/login");
-      // }, 2000);
+      setTimeout(() => {
+        console.log("Navigating to /login");
+        navigate("/login");
+      }, 2000);
 
     } catch (error: any) {
       console.error("Registration error:", error);

@@ -19,10 +19,11 @@ import ClassSchedule from "./home/ClassSchedule";
 import Products from "./routes/Products";
 import Locations from "./home/Locations";
 import NotFound from "./routes/NotFound";
-import MembershipForm from "./routes/dashboard/membership/MembershipPlanForm";
+import MembershipPlanForm from "./routes/dashboard/membership/MembershipPlanForm";
 import PlanList from "./routes/dashboard/membership/PlanList";
 import Classes from "./home/Classes";
 import UserProfile from "./routes/dashboard/profile/UserProfile";
+// import MembershipForm from "./routes/dashboard/membership/Membershipform";
 
 
 const App: React.FC = () => {
@@ -49,12 +50,12 @@ const App: React.FC = () => {
           <Route path="/member-stats" element={<StatsOverview />} />
           <Route path="/classes/:slug" element={<ClassSchedule />} />
           <Route path="/classes" element={<Classes />} />
-          <Route path="/membership" element={<MembershipForm />} />
+          <Route path="/membership" element={<MembershipPlanForm />} />
           <Route path="/planlist" element={<PlanList />} />
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="editprofile" element={<EditProfileForm />} /> 
           <Route path="userstatistics" element={<UserStats />} />
-          {/* <Route path="/edit-profile" element={<EditProfileForm />} /> */}
+          {/* <Route path="/membershipform" element={<MembershipForm />} /> */}
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/password-reset" element={<PasswordReset />} />
           <Route path="/contact-us" element={<Contact />} />

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Button from "../components/Button";
 import Label from "../components/Label";
 import { Menu, X, ShoppingCart } from "lucide-react";
@@ -21,6 +21,9 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
   const navigate = useNavigate();
   const { user, userData, loading } = useContext(AuthContext);
   const { cartCount } = useCart();
+  const location = useLocation();
+
+  const isAuthPage = location.pathname === "/login" ||location.pathname === "/register";
 
   if (loading) return null;
 
@@ -41,13 +44,14 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
       toast.error("Sign-out error:", error.message);
     }
   };
+  if (isAuthPage) return null;
   return (
     <>
       <nav className="w-full flex items-center justify-between px-6 py-4 shadow-md bg-white sticky top-0 z-50">
-        <div className="flex items-center gap-2">
-          <Label htmlFor="logo">
-            <img src="/images/logo.png" alt="logo" className="w-8" />
-          </Label>
+        <div className=" flex items-center gap-2">
+          <Link to="/">
+            <img src="/images/logo.png" alt="logo" className="w-20 max-h-none -my-4" />
+          </Link>
         </div>
 
         <div className="hidden md:flex items-center gap-6">
@@ -189,3 +193,4 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
 };
 
 export default Navigation;
+
