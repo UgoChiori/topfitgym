@@ -11,7 +11,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       manifest: {
         name: "TopFit Gym",
-        short_name: "topfit",
+        short_name: "TopFit Gym",
         description: "Premium Gym Membership and Fitness Shop",
         theme_color: "#166534",
         icons: [
