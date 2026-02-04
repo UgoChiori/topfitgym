@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Button from "../components/Button";
 import Label from "../components/Label";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X, ShoppingCart, Download } from "lucide-react";
 import { AuthContext } from "../context/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../auth/Firebase";
@@ -17,11 +17,35 @@ interface Props {
 
 const Navigation: React.FC<Props> = ({ onOpenCart }) => {
   const [isOpen, setIsOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
   const navigate = useNavigate();
   const { user, userData, loading } = useContext(AuthContext);
   const { cartCount } = useCart();
   const location = useLocation();
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      console.log("PWA install prompt captured")
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    
+    if (outcome === "accepted") {
+      console.log("User accepted the install prompt");
+    }
+    setDeferredPrompt(null);
+  };
 
   const isAuthPage = location.pathname === "/login" ||location.pathname === "/register";
 
@@ -73,6 +97,15 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
           <Link to="/products" className="text-green-800 hover:underline">
             <Label>Products</Label>
           </Link>
+          {deferredPrompt && (
+            <button
+              onClick={handleInstallClick}
+              className="flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full font-bold text-xs hover:bg-green-200 transition animate-pulse"
+            >
+              <Download size={14} />
+              INSTALL APP
+            </button>
+          )}
           <button
             onClick={onOpenCart}
             className="relative p-2 text-green-800 hover:bg-green-50 rounded-full transition cursor-pointer"
@@ -121,7 +154,13 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
           )}
         </div>
 
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-3">
+           {/* Mobile Install Icon */}
+           {deferredPrompt && (
+            <button onClick={handleInstallClick} className="text-green-800 p-2">
+              <Download size={22} />
+            </button>
+          )}
           <Button
             type="ghost"
             onClick={() => setIsOpen(!isOpen)}

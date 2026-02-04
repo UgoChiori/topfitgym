@@ -4,6 +4,14 @@ import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.tsx";
+import { registerSW } from "virtual:pwa-register";
+
+registerSW({ immediate: true});
+// const updateSW = registerSW({
+//   onOfflineReady() {
+//     console.log("offline ready")
+//   }
+// })
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
