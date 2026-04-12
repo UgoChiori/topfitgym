@@ -3,7 +3,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Label from "../../components/Label";
 import Form from "../../components/Form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { auth, googleProvider, db } from "../../auth/Firebase";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
@@ -194,6 +194,9 @@ const Login: React.FC = () => {
           </p>
         </div>
       </div>
+      <NavLink to="/" className="absolute top-4 left-4 text-green-800 font-bold">
+        &larr; Back to Home
+      </NavLink>
     </div>
   );
 };

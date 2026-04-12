@@ -25,9 +25,7 @@ import Classes from "./home/Classes";
 import UserProfile from "./routes/dashboard/profile/UserProfile";
 import ArenaBooking from "./components/ArenaBooking";
 import Session from "./components/Session";
-// import MembershipForm from "./routes/dashboard/membership/Membershipform";
-
-
+import ProtectedRoute from "./auth/ProtectedRoute";
 const App: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -48,24 +46,30 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegisterForm />} />
-          <Route path="/dashboard-home" element={<DashboardHome />} />
+          <Route path="/dashboard-home" element={
+            <ProtectedRoute><DashboardHome /></ProtectedRoute>
+          } />  
           <Route path="/member-stats" element={<StatsOverview />} />
           <Route path="/classes/:slug" element={<ClassSchedule />} />
-          <Route path="/classes" element={<Classes />} />
+          <Route path="/classes" element={ 
+            <ProtectedRoute><Classes /></ProtectedRoute>} />
           <Route path="/membership" element={<MembershipPlanForm />} />
-          <Route path="/planlist" element={<PlanList />} />
+          <Route path="/planlist" element={
+            <ProtectedRoute><PlanList /></ProtectedRoute>} />
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="editprofile" element={<EditProfileForm />} /> 
           <Route path="userstatistics" element={<UserStats />} />
-          {/* <Route path="/membershipform" element={<MembershipForm />} /> */}
+         
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/password-reset" element={<PasswordReset />} />
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/products" element={<Products />} />
 
           <Route path="/locations" element={<Locations />} />
-          <Route path="/arena-booking" element={<ArenaBooking />} />
-          <Route path="/sessions" element={<Session />} />
+          <Route path="/arena-booking" element={ 
+            <ProtectedRoute><ArenaBooking /> </ProtectedRoute>} />
+          <Route path="/sessions" element={
+            <ProtectedRoute> <Session /> </ProtectedRoute>}  />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "../auth/Firebase";
+// import { User } from "lucide-react";
 
 
 
 
 const HeroSection: React.FC = () => {
+  const [user, setUser] = useState<User | (null)>(null);
       const [, setIndex] = useState(0);
      const images = [
     "images/topgymcover.png",
@@ -18,6 +23,15 @@ const HeroSection: React.FC = () => {
       }, 6000);
       return () => clearInterval(interval);
     }, [images.length]);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+   setUser(currentUser);
+      });
+      return () => unsubscribe();
+    }, [navigate]);
   
   return (
 
@@ -51,14 +65,22 @@ const HeroSection: React.FC = () => {
       fitness | lifestyle | health
     </h3>
 <Link to="/register">
-   <button
+ {!user && (
+        <button onClick={() => navigate("/register")}
+        disabled={false}
+  className="w-[200px] bg-gray-700 hover:bg-gray-600 cursor-pointer text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
+        >
+          Register
+        </button>
+      )}
+   {/* <button
   type="submit"
   onClick={() => {}}
   disabled={false}
   className="w-[200px] bg-gray-700 hover:bg-gray-600 cursor-pointer text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
 >
   REGISTER
-</button>
+</button> */}
 </Link>
 
   
@@ -75,3 +97,8 @@ const HeroSection: React.FC = () => {
 }
 
 export default HeroSection
+
+
+
+
+
