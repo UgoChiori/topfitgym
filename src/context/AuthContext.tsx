@@ -16,6 +16,14 @@ interface AuthContextType {
   loading: true,
 });
 
+/**
+ * Provides context for authentication state.
+ * Includes user, userData, and loading states.
+ * Uses Firebase's onAuthStateChanged hook to update the user state.
+ * Loads userData from Firestore if a user is logged in.
+ * @param {ReactNode} children - The children components to render.
+ * @returns {React.ReactNode} - The AuthContext.Provider component.
+ */
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [userData, setUserData] = useState<unknown>(null);

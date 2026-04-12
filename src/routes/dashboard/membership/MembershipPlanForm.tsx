@@ -31,8 +31,8 @@ if (formData.selectedPlan) {
           <span className={!isYearly ? "font-bold text-black" : "text-gray-400"}>Monthly</span>
           <button
             onClick={() => setIsYearly(!isYearly)}
-            className="w-12 h-6 bg-gray-200 rounded-full relative transition-colors"
-            style={{ backgroundColor: isYearly ? "#16a34a" : "" }}
+            className={`w-12 h-6 bg-gray-200 rounded-full relative transition-colors ${isYearly ? "bg-green-600" : ""}`}
+            aria-label="Toggle between monthly and yearly billing"
           >
             <div
               className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${

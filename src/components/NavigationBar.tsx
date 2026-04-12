@@ -74,7 +74,7 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
       <nav className="w-full flex items-center justify-between px-6 py-4 shadow-md bg-white sticky top-0 z-50">
         <div className=" flex items-center gap-2">
           <Link to="/">
-            <img src="/images/logo.png" alt="logo" className="w-20 max-h-none -my-4" />
+            <img src="/images/formnfuel.png" alt="logo" className="w-30 max-h-none -my-4" />
           </Link>
         </div>
 
@@ -157,9 +157,9 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
         <div className="md:hidden flex items-center gap-3">
            {/* Mobile Install Icon */}
            {deferredPrompt && (
-            <button onClick={handleInstallClick} className="text-green-800 p-2">
-              <Download size={22} />
-            </button>
+            <button onClick={handleInstallClick} className="text-green-800 p-2" title="Install App" aria-label="Install App">
+                <Download size={22} />
+              </button>
           )}
           <Button
             type="ghost"
@@ -175,54 +175,68 @@ const Navigation: React.FC<Props> = ({ onOpenCart }) => {
       {isOpen && (
         <div className="lg:hidden bg-green-200 shadow-inner">
           <ul className="flex flex-col items-start space-y-3 px-6 py-4">
-            <Link to="/" onClick={() => setIsOpen(false)}>
-              Home
-            </Link>
-            <Link to="/classes" onClick={() => setIsOpen(false)}>
-              Classes
-            </Link>
-            <Link to="/membership" onClick={() => setIsOpen(false)}>
-              Membership
-            </Link>
-            <Link to="/contact-us" onClick={() => setIsOpen(false)}>
-              Contact
-            </Link>
-            <Link to="/products" onClick={() => setIsOpen(false)}>
-              Products
-            </Link>
+            <li>
+              <Link to="/" onClick={() => setIsOpen(false)} title="Go to Home">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/classes" onClick={() => setIsOpen(false)} title="View Classes">
+                Classes
+              </Link>
+            </li>
+            <li>
+              <Link to="/membership" onClick={() => setIsOpen(false)} title="View Membership Options">
+                Membership
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact-us" onClick={() => setIsOpen(false)} title="Contact Us">
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link to="/products" onClick={() => setIsOpen(false)} title="View Products">
+                Products
+              </Link>
+            </li>
             {!user && (
-              <Button
-                text="Login"
-                onClick={() => {
-                  navigate("/login");
-                  setIsOpen(false);
-                }}
-                loading={false}
-                disabled={false}
-                htmlType="button"
-              />
-            )}
-
-            {user && (
-              <div className="flex flex-col gap-3">
-                <span className="text-green-800 font-medium">
-                  {getGreeting()}, {userData?.firstName}
-                </span>
-                <Link to="/userprofile">
-                  <img
-                    src={userData?.photoURL || "/images/default-avatar.png"}
-                    alt="profile"
-                    className="w-12 h-12 rounded-full object-cover border"
-                  />
-                </Link>
+              <li>
                 <Button
-                  text="Sign Out"
-                  onClick={() => signOut(auth)}
+                  text="Login"
+                  onClick={() => {
+                    navigate("/login");
+                    setIsOpen(false);
+                  }}
                   loading={false}
                   disabled={false}
                   htmlType="button"
                 />
-              </div>
+              </li>
+            )}
+
+            {user && (
+              <li>
+                <div className="flex flex-col gap-3">
+                  <span className="text-green-800 font-medium">
+                    {getGreeting()}, {userData?.firstName}
+                  </span>
+                  <Link to="/userprofile">
+                    <img
+                      src={userData?.photoURL || "/images/default-avatar.png"}
+                      alt="profile"
+                      className="w-12 h-12 rounded-full object-cover border"
+                    />
+                  </Link>
+                  <Button
+                    text="Sign Out"
+                    onClick={() => signOut(auth)}
+                    loading={false}
+                    disabled={false}
+                    htmlType="button"
+                  />
+                </div>
+              </li>
             )}
           </ul>
         </div>

@@ -104,7 +104,7 @@ const OrderSummary: React.FC = () => {
           <span>Step {step} of 3</span>
         </div>
         <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-          <div className="bg-green-800 h-full transition-all duration-500" style={{ width: `${(step / 3) * 100}%` }} />
+          <div className="bg-green-800 h-full transition-all duration-500" style={{ "--step-progress": `${(step / 3) * 100}%` } as React.CSSProperties} />
         </div>
       </div>
 
@@ -158,7 +158,7 @@ const OrderSummary: React.FC = () => {
                         <p className="text-sm text-gray-500">{formData.email} • {formData.phoneNumber}</p>
                       </div>
                     </div>
-                    <button onClick={() => setStep(1)} className="p-2 text-green-800 hover:bg-green-50 rounded-xl transition"><Edit2 size={18} /></button>
+                    <button type="button" title="Edit personal information" onClick={() => setStep(1)} className="p-2 text-green-800 hover:bg-green-50 rounded-xl transition"><Edit2 size={18} /></button>
                   </div>
                 </div>
                 <div className="bg-white border rounded-3xl p-6 relative">
@@ -174,7 +174,7 @@ const OrderSummary: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    <button onClick={() => setStep(2)} className="p-2 text-green-800 hover:bg-green-50 rounded-xl transition"><Edit2 size={18} /></button>
+                    <button type="button" title="Edit fitness goals" onClick={() => setStep(2)} className="p-2 text-green-800 hover:bg-green-50 rounded-xl transition"><Edit2 size={18} /></button>
                   </div>
                 </div>
               </div>

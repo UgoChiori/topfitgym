@@ -35,7 +35,7 @@ const PlanList: React.FC = () => {
     navigate("/membership"); 
   }
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-green-50 min-h-screen">
       <div className="py-20 px-6 max-w-7xl mx-auto">
        
        
@@ -46,8 +46,8 @@ const PlanList: React.FC = () => {
             <span className={!isYearly ? "font-bold" : "text-gray-400"}>Monthly</span>
             <button
               onClick={() => setIsYearly(!isYearly)}
-              className="w-12 h-6 bg-gray-200 rounded-full relative transition-colors"
-              style={{ backgroundColor: isYearly ? "#16a34a" : "" }}
+              className={`w-12 h-6 rounded-full relative transition-colors ${isYearly ? "bg-green-600" : "bg-gray-200"}`}
+              aria-label="Toggle between monthly and yearly billing"
             >
               <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${isYearly ? "translate-x-6" : ""}`} />
             </button>

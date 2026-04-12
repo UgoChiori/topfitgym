@@ -42,7 +42,7 @@ const Products: React.FC = () => {
   }, [searchQuery, onlyInStock, selectedCategories]);
 
   return (
-    <main className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 py-20">
+    <main className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 py-20 bg-green-50">
       {/* Cart drawer opens when "add to cart is clicked. Click outside or on the cloe icon to close" */}
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <section className="mb-12 text-center">

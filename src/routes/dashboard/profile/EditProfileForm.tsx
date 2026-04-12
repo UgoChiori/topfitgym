@@ -115,7 +115,8 @@ const EditProfileForm: React.FC = () => {
             ref={fileInputRef} 
             onChange={handleFileChange} 
             className="hidden" 
-            accept="image/*" 
+            accept="image/*"
+            title="Upload profile photo"
           />
         </div>
 

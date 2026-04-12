@@ -23,6 +23,8 @@ import MembershipPlanForm from "./routes/dashboard/membership/MembershipPlanForm
 import PlanList from "./routes/dashboard/membership/PlanList";
 import Classes from "./home/Classes";
 import UserProfile from "./routes/dashboard/profile/UserProfile";
+import ArenaBooking from "./components/ArenaBooking";
+import Session from "./components/Session";
 // import MembershipForm from "./routes/dashboard/membership/Membershipform";
 
 
@@ -62,6 +64,8 @@ const App: React.FC = () => {
           <Route path="/products" element={<Products />} />
 
           <Route path="/locations" element={<Locations />} />
+          <Route path="/arena-booking" element={<ArenaBooking />} />
+          <Route path="/sessions" element={<Session />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

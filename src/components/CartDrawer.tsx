@@ -219,7 +219,7 @@ const handleSuccess = async (response: PaystackSuccessAction) => {
                 <span className="text-[10px] font-bold uppercase text-gray-400">
                   Secured by
                 </span>
-                <img src="images/paystacklogo.png" className="h-3" />
+                <img src="images/paystacklogo.png" className="h-3" alt="paystack logo" />
               </div>
             </div>
           )}
