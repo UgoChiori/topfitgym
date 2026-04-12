@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -37,19 +38,19 @@ const HeroSection: React.FC = () => {
 <div className="absolute inset-0 bg-black/40 flex flex-col justify-between px-4 py-6 opacity-70">
  
   <div className="flex flex-col items-center justify-center flex-1">
-    <h1 className="text-white text-3xl text-center sm:text-5xl font-bold tracking-wider">
-      CROSSFIT | HIIT | 24/7 OPEN GYM <br />
+    <h1 className="uppercase text-white text-3xl text-center sm:text-4xl font-bold tracking-wider">
+     SPORTS | nutrition | 24/7 OPEN GYM | juicebar <br />
       <br />
-      NUTRITION | YOGA
+    WORKSPACE | SHOP | creche
     </h1>
   </div>
 
 
   <div className="flex flex-col items-center mb-6">
-    <h3 className="text-white text-2xl text-center sm:text-3xl font-bold tracking-wider mb-4">
-      www.topfitgym.com
+    <h3 className="text-white capitalize text-2xl text-center sm:text-3xl font-bold tracking-wider mb-4">
+      fitness | lifestyle | health
     </h3>
-
+<Link to="/register">
    <button
   type="submit"
   onClick={() => {}}
@@ -58,6 +59,7 @@ const HeroSection: React.FC = () => {
 >
   REGISTER
 </button>
+</Link>
 
   
    

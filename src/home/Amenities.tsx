@@ -25,6 +25,26 @@ const amenities = [
     title: "Class Variety",
     desc: "Strength, Tabata, Yoga, Conditioning, and more — a broad range of group classes.",
   },
+  {
+    title: "Salad, Juice Bar and Cafe",
+    desc: "Refuel with healthy meals, fresh juices, and snacks at our in-house cafe.",
+  },
+  {
+    title: "Retail Shop",
+    desc: "Find top-quality fitness apparel, gear, and supplements at our retail shop.",
+  },
+  {
+    title: "Sports Arena",
+    desc: "Book our indoor sports arena for padel, squash, table tennis, and more. Perfect for training or friendly matches.",
+  },
+  {
+    title: "Workspace",
+    desc: "Need to work between sessions? Our comfortable workspace with Wi-Fi is available for members.",
+  },
+  {
+    title: "Creche",
+    desc: "Safe and fun childcare services while you train. Our creche is staffed with trained professionals.",
+  }
 ];
 
 const Amenities: React.FC = () => {
