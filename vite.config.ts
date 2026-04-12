@@ -10,8 +10,8 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
-        name: "TopFit Gym",
-        short_name: "TopFit Gym",
+        name: "Form and Fuel Fitness",
+        short_name: "Form & Fuel",
         description: "Premium Gym Membership and Fitness Shop",
         theme_color: "#166534",
         icons: [
